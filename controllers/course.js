@@ -161,7 +161,7 @@ export const getYourProgress = TryCatch(async (req, res) => {
     course: req.query.course,
   });
 
-  if (!progress) return res.status(404).json({ message: "null" });
+  if (!progress || progress.length === 0) return res.status(404).json({ message: "null" });
 
   const allLectures = (await Lecture.find({ course: req.query.course })).length;
 
